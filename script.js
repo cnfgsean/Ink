@@ -14,6 +14,7 @@ var palette = [
 var mouseX;
 var mouseY;
 var onFollow = false;
+var onClick = false;
 
 document.addEventListener("mousemove", function(e) {
   mouseX = e.clientX;
@@ -24,8 +25,15 @@ document.addEventListener("keydown", function(e) {
   if (e.keyCode == 32) {
     onFollow = !onFollow;
   }
-})
+});
 
+document.addEventListener("mousedown", function(e) {
+  onClick = true;
+});
+
+document.addEventListener("mouseup", function(e) {
+  onClick = false;
+});
 function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, color) {
   this.centerx = centerx;
   this.centery = centery;
@@ -38,6 +46,7 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
   this.color = color;
   this.lastMouse = {x: centerx, y: centery};
   this.growthStage = 0;
+  this.speedStage = 0;
 
   this.draw = function() {
     c.beginPath();
@@ -48,7 +57,7 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
 
   this.update = function() {
     this.draw();
-    this.radians += radianInc;
+    this.radians += this.radianInc;
     this.x = this.lastMouse.x + (this.distFromCenter * Math.cos(this.radians));
     this.y = this.lastMouse.y + (this.distFromCenter * Math.sin(this.radians));
 
@@ -59,6 +68,19 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
         this.distFromCenter += 1;
         this.growthStage++;
       }
+      this.color = palette[1];
+
+      if (onClick) {
+        if (this.speedStage < 30) {
+            this.radianInc += 0.001;
+            this.speedStage++;
+        }
+      } else {
+        if (this.speedStage > 0) {
+            this.radianInc -= 0.001;
+            this.speedStage--;
+        }
+      }
 
     } else {
       this.lastMouse.x += ((canvas.width / 2) - this.lastMouse.x) * 0.05;
@@ -67,6 +89,7 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
         this.distFromCenter -= 1;
         this.growthStage--;
       }
+      this.color = "#000000";
     }
 
   }
@@ -90,6 +113,8 @@ function animate() {
   for (var i = 0; i < circles.length; i++) {
     circles[i].update();
   }
+
+  console.log(circles[0].radianInc);
 
 }
 
