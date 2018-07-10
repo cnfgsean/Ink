@@ -11,3 +11,59 @@ canvas {
   margin-right: auto;
   display: block;
 }
+
+body {
+  background-color: rgb(247, 247, 247);
+}
+
+#canvas_border {
+  height: 2px;
+  background-color: #ddd;
+}
+
+#topline {
+  margin-top: 20px;
+  height: 3px;
+  background-color: #ddd;
+}
+
+#midline {
+  margin-top: 15px;
+  height: 6px;
+  background-color: #ccc;
+}
+
+#desc {
+  height: 1000px;
+}
+
+#desc h1 {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  height: 70px;
+  width: 500px;
+  color: #ddd;
+  font-family: 'Roboto Slab', serif;
+  border: 5px solid rgba(88, 140, 126, 0.8);
+  border-radius: 5px;
+  padding-top: 15px;
+}
+
+#content {
+  padding: 20px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+  background-color: #fff;
+  border: 3px solid rgba(88, 140, 126, 0.8);
+}
+
+#content p {
+  font-size: 24px;
+  font-family: 'Cabin', 'PT Sans Narrow', sans-serif;
+  line-height: 30px;
+}

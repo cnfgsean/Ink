@@ -1,7 +1,7 @@
 var canvas = document.querySelector("canvas");
 
 canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.width = window.innerWidth - 20;
 
 var c = canvas.getContext("2d");
 
@@ -14,11 +14,12 @@ var palette = [
 var mouseX;
 var mouseY;
 var onFollow = false;
-var onClick = false;
+var onSpeed = false;
 
 var bgmusic = document.createElement("AUDIO");
 bgmusic.setAttribute("src","music/wakingstars.mp3");
 bgmusic.play();
+bgmusic.loop = true;
 bgmusic.volume = 0.3;
 
 document.addEventListener("mousemove", function(e) {
@@ -27,17 +28,19 @@ document.addEventListener("mousemove", function(e) {
 });
 
 document.addEventListener("keydown", function(e) {
-  if (e.keyCode == 32) {
-    onFollow = !onFollow;
+  if (e.keyCode == 16) {
+    onSpeed = true;
   }
 });
 
-document.addEventListener("mousedown", function(e) {
-  onClick = true;
+document.addEventListener("keyup", function(e) {
+  if (e.keyCode == 16) {
+    onSpeed = false;
+  }
 });
 
 document.addEventListener("mouseup", function(e) {
-  onClick = false;
+  onFollow = !onFollow;
 });
 function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, color) {
   this.centerx = centerx;
@@ -73,9 +76,9 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
         this.distFromCenter += 1;
         this.growthStage++;
       }
-      this.color = palette[1];
+      this.color = palette[0];
 
-      if (onClick) {
+      if (onSpeed) {
         if (this.speedStage < 30) {
             this.radianInc += 0.001;
             this.speedStage++;
