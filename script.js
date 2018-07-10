@@ -22,6 +22,9 @@ bgmusic.play();
 bgmusic.loop = true;
 bgmusic.volume = 0.3;
 
+var bling = document.createElement("AUDIO");
+bling.setAttribute("src","music/long-expected.mp3");
+
 document.addEventListener("mousemove", function(e) {
   mouseX = e.clientX;
   mouseY = e.clientY;
@@ -75,6 +78,9 @@ function Circle (centerx, centery, radius, radians, distFromCenter, radianInc, c
       if (this.growthStage < 50) {
         this.distFromCenter += 1;
         this.growthStage++;
+      }
+      if (this.growthStage == 10) {
+        bling.play();
       }
       this.color = palette[0];
 
