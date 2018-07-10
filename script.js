@@ -16,6 +16,11 @@ var mouseY;
 var onFollow = false;
 var onClick = false;
 
+var bgmusic = document.createElement("AUDIO");
+bgmusic.setAttribute("src","music/wakingstars.mp3");
+bgmusic.play();
+bgmusic.volume = 0.3;
+
 document.addEventListener("mousemove", function(e) {
   mouseX = e.clientX;
   mouseY = e.clientY;
@@ -114,7 +119,7 @@ function animate() {
     circles[i].update();
   }
 
-  console.log(circles[0].radianInc);
+  // console.log(circles[0].radianInc);
 
 }
 
