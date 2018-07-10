@@ -23,7 +23,7 @@ bgmusic.loop = true;
 bgmusic.volume = 0.3;
 
 var bling = document.createElement("AUDIO");
-bling.setAttribute("src","music/long-expected.mp3");
+bling.setAttribute("src","music/wind-up-2.mp3");
 
 document.addEventListener("mousemove", function(e) {
   mouseX = e.clientX;
