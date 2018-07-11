@@ -9,30 +9,19 @@ var c = canvas.getContext("2d");
 var circles;
 var palette = [
   {r:88, g:140, b:126},
-  {r:217, g:100, b:89},
-  {r:70, g:140, b:66}
+  {r:217, g:100, b:89}
 ];
 
 var simplePalette = [
-<<<<<<< HEAD
   {r:0, g:0, b:0},
-  {r:255, g:0, b:0},
-  {r:0, g:255, b:0}
-=======
-  "#000000",
-  "#ff0000"
->>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
+  {r:255, g:0, b:0}
 ];
 
 var mouseX;
 var mouseY;
 var onFollow = false;
 var onSpeed = false;
-<<<<<<< HEAD
-var currentGen = 3;
-=======
 var currentGen = 2;
->>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
 var score = 0;
 
 var bgmusic = document.createElement("AUDIO");
@@ -58,7 +47,6 @@ document.addEventListener("keydown", function(e) {
 document.addEventListener("keyup", function(e) {
   if (e.keyCode == 16) {
     onSpeed = false;
-    colorBlend();
   }
 });
 
@@ -123,7 +111,6 @@ function Circle (dx, dy, centerx, centery, radius, radians, distFromCenter, radi
 
       if (onSpeed) {
         if (this.speedStage < 30) {
-<<<<<<< HEAD
           this.radianInc += 0.0015;
           this.speedStage++;
         }
@@ -131,18 +118,6 @@ function Circle (dx, dy, centerx, centery, radius, radians, distFromCenter, radi
         if (this.speedStage > 0) {
           this.radianInc -= 0.0015;
           this.speedStage--;
-=======
-            this.radianInc += 0.0015;
-            this.speedStage++;
-        }
-      } else {
-        if (this.speedStage > 0) {
-            this.radianInc -= 0.0015;
-            this.speedStage--;
-            if (this.speedStage == 10) {
-              colorBlend();
-            }
->>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
         }
       }
 
@@ -171,48 +146,9 @@ function init() {
 
   // GENERATE CIRCLES
   for (var i = 0; i < 20; i++) {
-<<<<<<< HEAD
-    circles.push(new Circle(0, 0, canvas.width / 2, canvas.height / 2, (Math.random() * 7) + 2, Math.random() * (Math.PI * 2), 55 + (Math.random() * 40), Math.random() * 0.03 + 0.01, simplePalette[0], true, 1));
-=======
     circles.push(new Circle(0, 0, canvas.width / 2, canvas.height / 2, (Math.random() * 7) + 2, Math.random() * (Math.PI * 2), 55 + (Math.random() * 40), Math.random() * 0.03 + 0.01, "#000000", true, 1));
->>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
   }
 
-}
-
-var toBlend;
-
-function colorBlend() {
-<<<<<<< HEAD
-  toBlend = 0;
-  let newR = 0;
-  let newG = 0;
-  let newB = 0;
-  for (var i = 0; i < circles.length; i++) {
-    if (circles[i].isActive) {
-      toBlend++;
-      newR += circles[i].color.r;
-      newG += circles[i].color.g;
-      newB += circles[i].color.b;
-    }
-  }
-  newR /= toBlend;
-  newG /= toBlend;
-  newB /= toBlend;
-
-  console.log({r: newR, g: newG, b: newB});
-  palette.push({r: Math.floor(newR), g: Math.floor(newG), b: Math.floor(newB)});
-  simplePalette.push({r: Math.floor(newR), g: Math.floor(newG), b: Math.floor(newB)});
-  currentGen++;
-
-=======
-  toBlend = [];
-  for (var i = 0; i < circles.length; i++) {
-    if (circles[i].isActive) {
-      toBlend.push(circles[i].color);
-    }
-  }
->>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
 }
 
 function spawnCircle() {
