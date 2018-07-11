@@ -14,16 +14,25 @@ var palette = [
 ];
 
 var simplePalette = [
+<<<<<<< HEAD
   {r:0, g:0, b:0},
   {r:255, g:0, b:0},
   {r:0, g:255, b:0}
+=======
+  "#000000",
+  "#ff0000"
+>>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
 ];
 
 var mouseX;
 var mouseY;
 var onFollow = false;
 var onSpeed = false;
+<<<<<<< HEAD
 var currentGen = 3;
+=======
+var currentGen = 2;
+>>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
 var score = 0;
 
 var bgmusic = document.createElement("AUDIO");
@@ -114,6 +123,7 @@ function Circle (dx, dy, centerx, centery, radius, radians, distFromCenter, radi
 
       if (onSpeed) {
         if (this.speedStage < 30) {
+<<<<<<< HEAD
           this.radianInc += 0.0015;
           this.speedStage++;
         }
@@ -121,6 +131,18 @@ function Circle (dx, dy, centerx, centery, radius, radians, distFromCenter, radi
         if (this.speedStage > 0) {
           this.radianInc -= 0.0015;
           this.speedStage--;
+=======
+            this.radianInc += 0.0015;
+            this.speedStage++;
+        }
+      } else {
+        if (this.speedStage > 0) {
+            this.radianInc -= 0.0015;
+            this.speedStage--;
+            if (this.speedStage == 10) {
+              colorBlend();
+            }
+>>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
         }
       }
 
@@ -149,7 +171,11 @@ function init() {
 
   // GENERATE CIRCLES
   for (var i = 0; i < 20; i++) {
+<<<<<<< HEAD
     circles.push(new Circle(0, 0, canvas.width / 2, canvas.height / 2, (Math.random() * 7) + 2, Math.random() * (Math.PI * 2), 55 + (Math.random() * 40), Math.random() * 0.03 + 0.01, simplePalette[0], true, 1));
+=======
+    circles.push(new Circle(0, 0, canvas.width / 2, canvas.height / 2, (Math.random() * 7) + 2, Math.random() * (Math.PI * 2), 55 + (Math.random() * 40), Math.random() * 0.03 + 0.01, "#000000", true, 1));
+>>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
   }
 
 }
@@ -157,6 +183,7 @@ function init() {
 var toBlend;
 
 function colorBlend() {
+<<<<<<< HEAD
   toBlend = 0;
   let newR = 0;
   let newG = 0;
@@ -178,6 +205,14 @@ function colorBlend() {
   simplePalette.push({r: Math.floor(newR), g: Math.floor(newG), b: Math.floor(newB)});
   currentGen++;
 
+=======
+  toBlend = [];
+  for (var i = 0; i < circles.length; i++) {
+    if (circles[i].isActive) {
+      toBlend.push(circles[i].color);
+    }
+  }
+>>>>>>> e3d980e9b29cd84998d38b29b78e1987a5e3291d
 }
 
 function spawnCircle() {
